@@ -138,5 +138,5 @@ There is option for saving unfinished game and continue same game later
     ###########################################################################################
     press Enter to continue
 
-As you see there is option for review game
+As you see there is also option for review game
     
