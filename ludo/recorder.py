@@ -3,7 +3,7 @@ from .game import Player
 
 
 class RunRecord():
-    '''get game data
+    '''provide recoded game data
     iterating over instance
     yield rolled_value and index
     '''

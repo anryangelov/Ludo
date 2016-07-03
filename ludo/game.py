@@ -217,8 +217,11 @@ class Game():
         available = set(self.board.COLOUR_ORDER) - set(used)
         return sorted(available)
 
-    def get_next_turn(self):
-        '''Get next player's turn.'''
+    def _get_next_turn(self):
+        '''Get next player's turn.
+        It is underscore because if called 
+        outside the class will break order
+        '''
         if not self.rolled_value == Die.MAX:
             self.players.rotate(-1)
         return self.players[0]
@@ -247,23 +250,22 @@ class Game():
     def get_board_pic(self):
         return self.board.paint_board()
 
-    def jog_foreign_pawn(self, pawn):
+    def _jog_foreign_pawn(self, pawn):
         pawns = self.board.get_pawns_on_same_postion(pawn)
         for p in pawns:
             if p.colour != pawn.colour:
                 self.board.put_pawn_on_board_pool(p)
                 self.jog_pawns.append(p)
 
-    def make_move(self, player, pawn):
+    def _make_move(self, player, pawn):
         '''tell the board to move pawn.
         After move ask board if pawn reach end or
-        jog others pawn. Check if pawn finished whether 
-        player finished.
+        jog others pawn. Check if pawn and player finished.
         '''
         if self.rolled_value == Die.MAX and\
                 self.board.is_pawn_on_board_pool(pawn):
             self.board.put_pawn_on_starting_square(pawn)
-            self.jog_foreign_pawn(pawn)
+            self._jog_foreign_pawn(pawn)
             return
         self.board.move_pawn(pawn, self.rolled_value)
         if self.board.does_pawn_reach_end(pawn):
@@ -272,9 +274,10 @@ class Game():
                 self.standing.append(player)
                 self.players.remove(player)
                 if len(self.players) == 1:
+                    self.standing.extend(self.players)
                     self.finished = True
         else:
-            self.jog_foreign_pawn(pawn)
+            self._jog_foreign_pawn(pawn)
 
     def play_turn(self, ind=None, rolled_val=None):
         '''this is main method which must be used to play game.
@@ -285,7 +288,7 @@ class Game():
         ind is chosen index from allowed pawns
         '''
         self.jog_pawns = []
-        self.curr_player = self.get_next_turn()
+        self.curr_player = self._get_next_turn()
         if rolled_val is None:
             self.rolled_value = Die.throw()
         else:
@@ -299,7 +302,7 @@ class Game():
             else:
                 self.index = ind
             self.picked_pawn = self.allowed_pawns[self.index]
-            self.make_move(self.curr_player, self.picked_pawn)
+            self._make_move(self.curr_player, self.picked_pawn)
         else:
             self.index = -1
             self.picked_pawn = None

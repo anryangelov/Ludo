@@ -20,8 +20,8 @@ class CLIGame():
                        error_mess="Invalid Option!", str_len=None):
         '''
         loop while receive correct value
-        allowed input it can be list allowed values
-        str_len is two sized tuple if min and max
+        param allowed_input can be list of allowed values
+        param str_len is two sized tuple if min and max
         '''
         prompt += linesep + self.prompt_end
         while True:
