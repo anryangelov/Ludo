@@ -1,0 +1,57 @@
+Generally my approach to ludo game is
+down to following classes
+
+class Pawn 
+    it is simple as pawn is and it is not aware of anything
+    rather than his colour, index and id - need for console case
+
+class Player
+    responsible to which pawn to move
+    know (holds) his pawns 
+    remember his colour 
+
+class Board
+    knows where a pawn is on abstract board.
+    abstract board is just positions (numbers) 
+    for example the size of share path from all pawns is 56
+    holds all pawns and assign position to them
+    move pawn on abstract board - change pawn's position
+    check if pawns can pass end of the board size and so on
+    It is just board, it does not know the rules
+
+class PaintBoard
+    makes visual representation of the board and pawns on it
+    Just need from pawn's position in order to know where
+    to place them in board console template
+
+class Die
+    just throw die and return value 
+
+class Game
+    knows the rules of the game
+    holds players participating in the game
+    knows for example what to do when 
+    one pawn reach another
+    or pawn reach end or
+    player roll six and so on
+    the idea of using the class is to calling
+    a method which play one turn (one roll of die)
+    after the turn the state of attributes are changed
+    and the result can be seen from them.
+    this method also can accept predefined 
+    rolled value and player choice for which pawn to move
+    This is useful for replay (review) game if has saved
+    rolled value and players choice
+
+class MakeRecord
+    save game history on record (file)
+    (rolled value from die, players choice)
+    also save players
+    use python pickle but can be used 
+    JSON for example to store information
+
+class RunRecord
+    retrieve game history and players from record (file)
+
+class cli
+    provides user interface
