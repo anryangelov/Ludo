@@ -1,7 +1,7 @@
 # ludo
 ludo board game on console
 
-The game is tested with python3 only.  
+The game is tested with python3 only on linux machine.  
 Start game in ludo dir wirh ./run.py or python3 run.py 
 
     $ cd ludo  
@@ -138,5 +138,5 @@ There is option for saving unfinished game and continue same game later
     ###########################################################################################
     press Enter to continue
 
-As you see also game has option to review game
+As you see there is option for review game
     
