@@ -17,7 +17,7 @@ class RunRecord():
     def get_players(self, func=None):
         '''
         return Player object
-        recreated from list
+        recreated from a list
         func is callable which player
         may need for choice delegation
         '''
@@ -39,8 +39,8 @@ class RunRecord():
 
 class MakeRecord():
     '''save game data
-    this is nested list
-    save with pickle
+    as a nested list which is
+    saved with pickle
     '''
 
     def __init__(self):
@@ -49,7 +49,7 @@ class MakeRecord():
 
     def add_player(self, player_obj):
         '''Accept Player object and
-        it save not as object rather as list
+        it save NOT as object rather as a list
         '''
         if player_obj.choose_pawn_delegate is None:
             is_computer = True
@@ -62,7 +62,7 @@ class MakeRecord():
         self.game_history.append((rolled_value, index))
 
     def save(self, file_obj):
-        '''list of lists whit players and
+        '''list of lists with players and
         game history
         '''
         pickle.dump([self.players, self.game_history],

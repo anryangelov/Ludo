@@ -36,7 +36,7 @@ class Player():
         return "{}({})".format(self.name, self.colour)
 
     def choose_pawn(self, pawns):
-        '''Delegate choice to choose_pawn_delegate
+        '''Delegate choice to choose_pawn_delegate func attribute
         if it is not None
         '''
         if len(pawns) == 1:
@@ -281,10 +281,10 @@ class Game():
 
     def play_turn(self, ind=None, rolled_val=None):
         '''this is main method which must be used to play game.
-        Ask for next player's turn, roll die, ask player
+        Method ask for next player's turn, roll die, ask player
         to choose pawn, move pawn.
         ind and rolled_val are suitable to be used when
-        game must be replicate (record)
+        game must be replicated (recorded)
         ind is chosen index from allowed pawns
         '''
         self.jog_pawns = []

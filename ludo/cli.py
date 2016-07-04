@@ -11,9 +11,9 @@ class CLIGame():
         self.game = Game()
         # used for nicer print
         self.prompted_for_pawn = False
-        # saving data
+        # saving game data
         self.record_maker = MakeRecord()
-        # getting data
+        # getting game data
         self.record_runner = None
 
     def validate_input(self, prompt, desire_type, allawed_input=None,
@@ -82,9 +82,9 @@ class CLIGame():
         return choice == 1
 
     def prompt_for_player(self):
-        ''' get player attributes form input and
+        ''' get player attributes from input,
         initial player instance and
-        player to the game
+        add player to the game
         '''
         available_colours = self.game.get_available_colours()
         text = linesep.join(["choose type of player",
@@ -138,7 +138,7 @@ class CLIGame():
                 print("Player added")
 
     def prompt_choose_pawn(self):
-        '''used when player (human) more than
+        '''used when player (human) has more than
         one possible pawn to move.
         This method is pass as a callable during
         player instantiation
@@ -203,9 +203,9 @@ class CLIGame():
         print(self.game.get_board_pic())
 
     def run_recorded_game(self):
-        '''get history rolled_value and 
-        index (from allowed pawn) to
-        replay game'''
+        '''get history of game (rolled_value
+        and  index's allowed pawn) from 
+        record_runner in order to replay game'''
         self.load_recorded_players()
         self.print_players_info()
         self.prompt_to_continue()
@@ -217,9 +217,9 @@ class CLIGame():
             self.print_board()
 
     def continue_recorded_game(self):
-        '''move forward by calling 
+        '''move forward the game by calling 
         play_turn method to the moment 
-        where game is stopped. 
+        where game was interrupted. 
         '''
         self.load_recorded_players()
         self.record_players()
@@ -254,8 +254,8 @@ class CLIGame():
         self.record_players()
 
     def play_game(self):
-        '''mainly calling play_turn method 
-        from game while game finished
+        '''mainly calling play_turn
+        Game's method while game finished
         '''
         try:
             while not self.game.finished:
@@ -284,7 +284,7 @@ class CLIGame():
             print("Game is saved")
 
     def start(self):
-        '''main method to start cli'''
+        '''main method, starting cli'''
         print()
         try:
             choice = self.get_user_initial_choice()
